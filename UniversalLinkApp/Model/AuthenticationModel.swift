@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+struct LoginCredentials: Codable {
+    let email: String
+}

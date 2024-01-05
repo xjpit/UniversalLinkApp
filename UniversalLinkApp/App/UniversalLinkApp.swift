@@ -8,10 +8,19 @@
 import SwiftUI
 
 @main
-struct UniversalLinkAppApp: App {
+struct UniversalLinkApp: App {
+    
+    @State private var viewModel = LoginViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LoginView()
+                .onOpenURL { url in
+                    print(url)
+                    Task {
+                        try await viewModel.authenticateMagicLink(url: url)
+                    }
+                }
         }
     }
 }
